@@ -1,7 +1,9 @@
 from django.shortcuts import render
 
+from rest_framework.views import APIView
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
+from rest_framework.decorators import action
 
 from .serializers import CustomUserSerializer, CustomUserLoginSerializer
 from .models import CustomUser
@@ -37,13 +39,10 @@ class UserLoginViewSet(viewsets.ModelViewSet):
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
     
 
-class UserLogOutViewSet(viewsets.ModelViewSet):
+class UserLogOutView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def destroy(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({'message': 'User logged out successfuly.'}, status=status.HTTP_205_RESET_CONTENT)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+    def post(self, request):
+        """Foydalanuvchini tizimdan chiqarish."""
+        request.auth.delete()  # Token asosida ishlayotgan bo‘lsangiz
+        return Response({"message": "User logged out successfully"}, status=status.HTTP_205_RESET_CONTENT)

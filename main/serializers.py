@@ -55,7 +55,7 @@ class BookingSerializer(serializers.ModelSerializer):
             'id', 'user', 'user_name', 
             'flight', 'flight_number', 
             'hotel', 'hotel_name', 
-            'tour_package', 'tour_package_name'
+            'tour_package', 'tour_package_name',
             'transport_service', 'transport_service_name',
             'tickets', 'ticket_number', 
             'booking_date', 'status'
