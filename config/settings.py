@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3f=@d^li_lcl4iz!v&w^929mpefz&60ldln9^v=34lnt(9sl7a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nazir-travel-api-production.up.railway.app', "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
